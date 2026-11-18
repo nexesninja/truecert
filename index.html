@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Certificate Verification</title>
+  <meta name="description" content="Check that a certificate was issued by the organisation named on it.">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap"><a class="wordmark" href="/">Certificate Verification</a></div>
+  </header>
+
+  <main class="wrap">
+    <h1>Check a certificate</h1>
+    <p class="lead">Use the details printed on a certificate to confirm that the organisation named on it issued it.</p>
+
+    <ol class="steps">
+      <li>Find the certificate ID printed on the certificate.</li>
+      <li>Enter the ID, the name and the certificate type as they appear.</li>
+      <li>Compare the result with the certificate you are checking.</li>
+    </ol>
+
+    <form id="verify-form">
+      <div class="field">
+        <label for="cert-id">Certificate ID</label>
+        <input id="cert-id" name="id" type="text" required autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="NG26-XXXXXXXXXX">
+        <p class="hint" id="event-note">The ID starts with the event code, for example NG26-.</p>
+      </div>
+      <div class="field">
+        <label for="cert-name">Name on the certificate</label>
+        <input id="cert-name" name="name" type="text" required autocomplete="off">
+        <p class="hint">Capital letters and extra spaces do not matter.</p>
+      </div>
+      <div class="field">
+        <label for="cert-type">Certificate type</label>
+        <select id="cert-type" name="type" required>
+          <option value="">Enter the ID first</option>
+        </select>
+      </div>
+      <button type="submit">Verify certificate</button>
+    </form>
+
+    <div id="result" aria-live="polite"></div>
+
+    <section class="events">
+      <h2>Events on this site</h2>
+      <ul>
+        <li>
+          <a href="/ng26/">NEXTGEN Research 2026</a>
+          <span>Green Club of FCT, University of Kelaniya</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><p>A certificate is confirmed only when its ID, name and type match what the issuing organisation generated.</p></div>
+  </footer>
+
+  <script src="/verify.js"></script>
+</body>
+</html>
