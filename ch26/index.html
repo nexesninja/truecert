@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CipherHunt'26 | TrueCert</title>
+  <meta name="description" content="Verify a certificate issued for CipherHunt'26.">
+  <link rel="icon" type="image/png" href="../logos/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* The ISACA SVG has empty space on its right, so the artwork sits left of centre.
+       This shifts it by a share of its own width. Adjust, or trim the SVG's viewBox and remove this. */
+    .event-head img { transform: translateX(0%); }
+  </style>
+</head>
+<body data-event="CH26">
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../"><img src="../logos/truecert-logo.png" alt="TrueCert"></a></div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="event-head">
+        <img src="../logos/ISACA_logo.png" alt="UOK ISACA Student Group logo">
+      </div>
+      <h1>CipherHunt'26</h1>
+      <p class="lead">Check a certificate issued for this event.</p>
+      <ol class="steps">
+        <li>Find the certificate ID printed on the certificate.</li>
+        <li>Enter the ID, the name and the certificate type (Participant or Organizing Committee) as they appear.</li>
+        <li>Compare the result with the certificate you are checking.</li>
+      </ol>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <form id="verify-form" class="panel">
+      <div class="field">
+        <label for="cert-id">Certificate ID</label>
+        <input id="cert-id" name="id" type="text" required autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="CH26-XXXXXXXXXX">
+        <p class="hint">You can leave out the CH26- at the start.</p>
+      </div>
+      <div class="field">
+        <label for="cert-name">Name on the certificate</label>
+        <input id="cert-name" name="name" type="text" required autocomplete="off">
+        <p class="hint">Capital letters and extra spaces do not matter.</p>
+      </div>
+      <div class="field">
+        <label for="cert-type">Certificate type</label>
+        <select id="cert-type" name="type" required>
+          <option value="">Loading...</option>
+        </select>
+      </div>
+      <button type="submit">Verify certificate</button>
+    </form>
+
+    <div id="result" aria-live="polite"></div>
+
+    <section class="about">
+      <h2>About the event</h2>
+      <p>CipherHunt'26 was a capture the flag (CTF) cybersecurity competition held on 14 November 2026 at the Faculty of Computing &amp; Technology, University of Kelaniya. It was organized by the UOK ISACA Student Group.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><p>A certificate is confirmed only when its ID, name and type match what the issuing organization generated.</p></div>
+  </footer>
+
+  <script src="../verify.js"></script>
+</body>
+</html>
