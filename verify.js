@@ -89,6 +89,14 @@ function fillTypes(ev) {
   typeField.innerHTML = "";
   clearError(typeField);
 
+  if (ev === "error") {
+    typeField.dataset.failed = "1";
+    typeField.add(new Option("Could not load types. Try again", ""));
+    if (eventNote) eventNote.textContent = "Could not reach the verification service. Check your connection and try again.";
+    return;
+  }
+  delete typeField.dataset.failed;
+
   if (!ev || !ev.found) {
     typeField.add(new Option(ev ? "No event uses this code" : "Enter the ID first", ""));
     if (eventNote) eventNote.textContent = ev ? "No event matches this code. Check the start of the ID." : defaultNote;
@@ -107,6 +115,7 @@ async function showEvent(code) {
     try {
       events[code] = await ask("/event?code=" + encodeURIComponent(code));
     } catch {
+      if (code === codeFor(idField.value)) fillTypes("error");
       return;
     }
   }
@@ -145,7 +154,7 @@ function showValid(data, entered) {
     ["Certificate ID", entered.id],
   ];
   const logo = !fixedEvent && data.logo
-    ? `<img class="org-logo" src="/logos/${esc(data.logo)}" alt="">`
+    ? `<img class="org-logo" src="logos/${esc(data.logo)}" alt="">`
     : "";
 
   result.className = "ok";
@@ -204,6 +213,9 @@ form.addEventListener("submit", event => {
 });
 
 if (!fixedEvent) idField.addEventListener("input", () => showEvent(codeFor(idField.value)));
+typeField.addEventListener("focus", () => {
+  if (typeField.dataset.failed) showEvent(codeFor(idField.value));
+});
 if (fixedEvent) showEvent(fixedEvent);
 
 const params = new URLSearchParams(location.search);
